@@ -35,7 +35,7 @@ class TestSuiteSerializer(serializers.Serializer):
 
 class TestCaseSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
-    test_suite = serializers.CharField(required=True, max_length=200)
+    suite_name = serializers.CharField(required=True, max_length=200)
     test_module = serializers.CharField(required=True, max_length=200)
     test_name = serializers.CharField(required=True, max_length=200)
     date_run = serializers.DateTimeField(required=False)
@@ -52,12 +52,11 @@ class TestCaseSerializer(serializers.Serializer):
         """
         Update and return an existing `TestSuite` instance, given the validated data.
         """
-        instance.test_suite = validated_data.get('test_suite', instance.test_suite)
+        instance.suite_name = validated_data.get('suite_name', instance.suite_name)
         instance.test_module = validated_data.get('test_module', instance.test_module)
         instance.test_name = validated_data.get('test_name', instance.test_name)
-        instance.status = validated_data.get('date_run', instance.date_run)
+        instance.date_run = validated_data.get('date_run', instance.date_run)
         instance.status = validated_data.get('status', instance.status)
-        instance.failing_context = validated_data.get('failing_context',
-                                                      instance.failing_context)
+        instance.failing_context = validated_data.get('failing_context', instance.failing_context)
         instance.save()
         return instance

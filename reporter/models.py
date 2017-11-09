@@ -17,12 +17,12 @@ class TestSuite(models.Model):
 
 
 class TestCase(models.Model):
-    test_suite = models.CharField(max_length=200)
+    suite_name = models.CharField(max_length=200)
     test_module = models.CharField(max_length=200)
     test_name = models.CharField(max_length=200)
     date_run = models.DateTimeField(default=timezone.now)
     status = models.CharField(max_length=50)
-    failing_context = models.CharField(max_length=500, default=None)
+    failing_context = models.CharField(max_length=500, default='')
 
     def __str__(self):
         return self.test_name
