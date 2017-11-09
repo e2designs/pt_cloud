@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>
+<dl>
+    <dt>Total Tests: {{ plot_values.total }}</dt>
+    <dt>Passing: {{ plot_values.passed }}</dt>
+    <dt>Skipped: {{ plot_values.skipped }}</dt>
+    <dt>Failing: {{ plot_values.failed }}</dt>
+    <img src="{% url 'pie-chart' %}"/>
+</dl>
+</p>
+
+{% for suite in suites.all %}
+<p>
+<dl>
+    <dt>{{ suite.suite_name }} - date run: {{ suite.date_run }}</dt>
+    <dd>Num Tests: {{ suite.num_tests }}</dd>
+    <dd>Number Passing: {{ suite.num_passed }}</dd>
+    <dd>Number Skipped: {{ suite.num_skipped }}</dd>
+    <dd>Number Failing: {{ suite.num_failed }}</dd>
+</dl>
+</p>
+{% endfor %}
+{% endblock %}
