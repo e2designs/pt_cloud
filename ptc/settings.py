@@ -50,12 +50,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'vac.urls'
+ROOT_URLCONF = 'ptc.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'vac', 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'ptc', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'vac.wsgi.application'
+WSGI_APPLICATION = 'ptc.wsgi.application'
 
 
 # Database
@@ -121,7 +121,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'vac', 'static',)
+    os.path.join(BASE_DIR, 'ptc', 'static',)
 )
 
 REST_FRAMEWORK = {
