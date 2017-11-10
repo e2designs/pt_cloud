@@ -16,7 +16,9 @@ from matplotlib import pyplot
 
 
 def pie_chart(request):
-    suites = TestSuite.objects.all()
+    suites = TestSuite.objects.raw('select *, max(date_run) '
+                                   'from reporter_testsuite group by '
+                                   'suite_name')
 
     plot_values = {'total': 0, 'passed': 0, 'skipped': 0, 'failed': 0}
     for suite in suites:
@@ -52,7 +54,9 @@ def display_test_status(request):
 
     if request.method == 'GET':
 
-        suites = TestSuite.objects.all()
+        suites = TestSuite.objects.raw('select *, max(date_run) '
+                                       'from reporter_testsuite group by '
+                                       'suite_name')
 
         plot_values = {'total': 0, 'passed': 0, 'skipped': 0, 'failed': 0}
         for suite in suites:
@@ -62,7 +66,7 @@ def display_test_status(request):
             plot_values['failed'] += suite.num_failed
 
         context = {
-            'suites': suites.all(),
+            'suites': suites,
             'plot_values': plot_values,
         }
         return render(request, 'test_status.html', context)
