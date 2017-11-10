@@ -4,7 +4,7 @@ from rest_framework import serializers
 
 class TestSuiteSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
-    suite_name = serializers.CharField(required=True, max_length=200)
+    suite_name = serializers.CharField(required=True)
     date_run = serializers.DateTimeField(required=False)
     system = serializers.CharField(required=False)
     test_bench = serializers.CharField(required=False)
@@ -37,12 +37,12 @@ class TestSuiteSerializer(serializers.Serializer):
 
 class TestCaseSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
-    suite_name = serializers.CharField(required=True, max_length=200)
-    test_module = serializers.CharField(required=True, max_length=200)
-    test_name = serializers.CharField(required=True, max_length=200)
+    suite_name = serializers.CharField(required=True)
+    test_module = serializers.CharField(required=True)
+    test_name = serializers.CharField(required=True)
     date_run = serializers.DateTimeField(required=False)
-    status = serializers.CharField(required=True, max_length=50)
-    failing_context = serializers.CharField(required=False, max_length=900)
+    status = serializers.CharField(required=True)
+    failing_context = serializers.CharField(required=False)
 
     def create(self, validated_data):
         """

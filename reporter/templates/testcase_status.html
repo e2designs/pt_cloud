@@ -1,10 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Test Case Status</h2>
-    <dl>
-        {% for test in testcases.all %}
-            <dd>{{ test.test_name }} - date run: {{ test.date_run }} - status: {{ test.status }}</dd>
-        {% endfor %}
-    </dl>
+<h2>Test Case Status</h2>
+<dl>
+    {% for suite in suites %}
+    <h3> {{ suite.suite_name }}</h3>
+    {% for test in tests %}
+    {% if test.suite_name == suite.suite_name %}
+    <dd> {{ test.status }} :: {{ test.test_name }}</dd>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+</dl>
 {% endblock %}

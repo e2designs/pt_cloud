@@ -11,14 +11,16 @@
 </dl>
 </p>
 
-{% for suite in suites.all %}
+{% for suite in suites %}
 <p>
 <dl>
-    <dt>{{ suite.suite_name }} - date run: {{ suite.date_run }}</dt>
+    <dt>{{ suite.suite_name }} </dt>
+    <dt>Date Run: {{ suite.date_run }}</dt>
     <dd>Num Tests: {{ suite.num_tests }}</dd>
     <dd>Number Passing: {{ suite.num_passed }}</dd>
     <dd>Number Skipped: {{ suite.num_skipped }}</dd>
     <dd>Number Failing: {{ suite.num_failed }}</dd>
+    <dd>Test bench: {{ suite.test_bench }}</dd>
 </dl>
 </p>
 {% endfor %}

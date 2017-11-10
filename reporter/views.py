@@ -29,7 +29,7 @@ def pie_chart(request):
 
     labels = 'Passed', 'Skipped', 'Failed'
     sizes = [plot_values['passed'], plot_values['skipped'], plot_values['failed']]
-    colors = ['green', 'yellow', 'red']
+    colors = ['#086788', '#FDF0D5', '#EB5E55']
     explode = (0, 0.1, 0)
 
     fig = pyplot.figure(0)
@@ -89,10 +89,16 @@ def display_testcase_status(request):
 
     if request.method == 'GET':
 
-        tests = TestCase.objects.all()
+        tests = TestCase.objects.raw('select *, max(date_run) '
+                                      'from reporter_testcase group by '
+                                      'suite_name')
+        suites = TestSuite.objects.raw('select *, max(date_run) '
+                                       'from reporter_testsuite group by '
+                                       'suite_name')
 
         context = {
             'tests': tests,
+            'suites': suites,
         }
         return render(request, 'testcase_status.html', context)
 
