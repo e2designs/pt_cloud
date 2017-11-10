@@ -23,7 +23,7 @@ class TestCase(models.Model):
     test_name = models.CharField(max_length=200)
     date_run = models.DateTimeField(default=timezone.now)
     status = models.CharField(max_length=50)
-    failing_context = models.CharField(max_length=500, default='')
+    failing_context = models.CharField(max_length=900, default='NA')
 
     def __str__(self):
         return self.test_name

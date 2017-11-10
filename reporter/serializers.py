@@ -40,19 +40,19 @@ class TestCaseSerializer(serializers.Serializer):
     suite_name = serializers.CharField(required=True, max_length=200)
     test_module = serializers.CharField(required=True, max_length=200)
     test_name = serializers.CharField(required=True, max_length=200)
-    date_run = serializers.DateTimeField(required=True)
+    date_run = serializers.DateTimeField(required=False)
     status = serializers.CharField(required=True, max_length=50)
-    failing_context = serializers.CharField(required=False, max_length=500)
+    failing_context = serializers.CharField(required=False, max_length=900)
 
     def create(self, validated_data):
         """
-        Create and return a new `TestSuite` instance, given the validated data.
+        Create and return a new `TestCase` instance, given the validated data.
         """
         return TestCase.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
         """
-        Update and return an existing `TestSuite` instance, given the validated data.
+        Update and return an existing `TestCase` instance, given the validated data.
         """
         instance.suite_name = validated_data.get('suite_name', instance.suite_name)
         instance.test_module = validated_data.get('test_module', instance.test_module)

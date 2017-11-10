@@ -80,7 +80,7 @@ def display_test_status(request):
 
 
 @csrf_exempt
-@api_view(['POST'])
+@api_view(['GET', 'POST'])
 def display_testcase_status(request):
     """
     :param request: default page request
